@@ -1,0 +1,4 @@
+costumer - id, FirstName, TelephoneNumber, Movie
+movie - id, name, date/time, room id
+room - id, number, cinema id
+cinema - id, name, movie id

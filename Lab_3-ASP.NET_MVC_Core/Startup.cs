@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using LibraryData;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lab_3_ASP.NET_MVC_Core
 {
@@ -22,6 +25,9 @@ namespace Lab_3_ASP.NET_MVC_Core
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<BerraContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("LibraryConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
