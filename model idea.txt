@@ -1,4 +1,17 @@
-costumer - id, FirstName, TelephoneNumber, Movie
-movie - id, name, date/time, room id
-room - id, number, cinema id
-cinema - id, name, movie id
+costumer - id, FirstName, TelephoneNumber, Movie, Cinema
+movie - id, name, director, dateTime, room id, price
+room - id, cinema id, seats, status
+cinema - id, name, room id, open time (dateTime)
+
+BookingTicket - id, BookingDate(DateTime), Movie(Name, DateTime, Price), Room(Id), Cinema(Name), Costumer(Name, Telephone nr)
+
+Relationships:
+
+cinema, client = one to many
+cinema, room = one to many
+
+room, client = many to many
+room, movie = many to many
+
+client, cinema = one to many
+client, card = one to one

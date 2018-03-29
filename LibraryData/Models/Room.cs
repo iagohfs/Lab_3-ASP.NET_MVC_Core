@@ -6,17 +6,19 @@ using System.Text;
 
 namespace LibraryData.Models
 {
-    public class Client
+    public class Room
     {
         [Key]
         public int Id { get; set; }
 
-        [Column("FirstName")]
+        [Column("Status")]
         [MaxLength(32)]
-        public string FirstName { get; set; }
-        public int TelephoneNumber { get; set; }
+        public string Status { get; set; }
 
-        public virtual Cinema Cinema { get; set; }
-        public virtual Room Room { get; set; }
+        public int Seats { get; set; }
+
+        public virtual Cinema CurrentCinema { get; set; }
+        public virtual IEnumerable<Movie> Movies { get; set; }
+
     }
 }
