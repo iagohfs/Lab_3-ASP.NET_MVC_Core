@@ -28,7 +28,6 @@ namespace LibraryData.Models
         public int AgeRange { get; set; }
         public decimal Price { get; set; }
 
-        public virtual Room Room { get; set; }
 
     }
 }

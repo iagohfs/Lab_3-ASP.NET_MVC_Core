@@ -18,5 +18,9 @@ namespace LibraryData.Models
 
         public virtual Cinema Cinema { get; set; }
         public virtual Room Room { get; set; }
+        public virtual Movie Movie { get; set; }
+
+        public virtual IEnumerable<BookingTicket> BookingTicket { get; set; }
+
     }
 }

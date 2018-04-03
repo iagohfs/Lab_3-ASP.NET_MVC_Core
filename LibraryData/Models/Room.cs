@@ -17,7 +17,6 @@ namespace LibraryData.Models
 
         public int Seats { get; set; }
 
-        public virtual Cinema CurrentCinema { get; set; }
         public virtual IEnumerable<Movie> Movies { get; set; }
 
     }

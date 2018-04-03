@@ -11,9 +11,10 @@ using System;
 namespace LibraryData.Migrations
 {
     [DbContext(typeof(BerraContext))]
-    partial class BerraContextModelSnapshot : ModelSnapshot
+    [Migration("20180403131729_Small_update")]
+    partial class Small_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

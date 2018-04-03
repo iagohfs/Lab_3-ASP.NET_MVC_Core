@@ -11,9 +11,10 @@ using System;
 namespace LibraryData.Migrations
 {
     [DbContext(typeof(BerraContext))]
-    partial class BerraContextModelSnapshot : ModelSnapshot
+    [Migration("20180403131538_Remodel_2")]
+    partial class Remodel_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,15 +101,11 @@ namespace LibraryData.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<int?>("RoomId");
-
                     b.Property<string>("Title")
                         .HasColumnName("Title")
                         .HasMaxLength(32);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
 
                     b.ToTable("Movies");
                 });
@@ -118,6 +115,8 @@ namespace LibraryData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("RoomId");
+
                     b.Property<int>("Seats");
 
                     b.Property<string>("Status")
@@ -125,6 +124,8 @@ namespace LibraryData.Migrations
                         .HasMaxLength(32);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Rooms");
                 });
@@ -151,10 +152,10 @@ namespace LibraryData.Migrations
                         .HasForeignKey("RoomId");
                 });
 
-            modelBuilder.Entity("LibraryData.Models.Movie", b =>
+            modelBuilder.Entity("LibraryData.Models.Room", b =>
                 {
                     b.HasOne("LibraryData.Models.Room")
-                        .WithMany("Movies")
+                        .WithMany("Rooms")
                         .HasForeignKey("RoomId");
                 });
 #pragma warning restore 612, 618

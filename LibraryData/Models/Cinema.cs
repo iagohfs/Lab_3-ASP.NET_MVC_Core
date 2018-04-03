@@ -18,7 +18,6 @@ namespace LibraryData.Models
 
         public DateTime OpenTime { get; set; }
 
-        public virtual IEnumerable<Client> Clients { get; set; }
-        public virtual IEnumerable<Movie> Movies { get; set; }
+        public virtual IEnumerable<Client> Client { get; set; }
     }
 }

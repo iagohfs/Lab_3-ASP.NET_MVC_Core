@@ -11,9 +11,10 @@ using System;
 namespace LibraryData.Migrations
 {
     [DbContext(typeof(BerraContext))]
-    partial class BerraContextModelSnapshot : ModelSnapshot
+    [Migration("20180403124929_remodelling")]
+    partial class remodelling
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,8 +65,6 @@ namespace LibraryData.Migrations
                         .HasColumnName("FirstName")
                         .HasMaxLength(32);
 
-                    b.Property<int?>("MovieId");
-
                     b.Property<int?>("RoomId");
 
                     b.Property<int>("TelephoneNumber");
@@ -73,8 +72,6 @@ namespace LibraryData.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CinemaId");
-
-                    b.HasIndex("MovieId");
 
                     b.HasIndex("RoomId");
 
@@ -87,6 +84,8 @@ namespace LibraryData.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AgeRange");
+
+                    b.Property<int?>("CinemaId");
 
                     b.Property<string>("Director")
                         .HasColumnName("Director")
@@ -108,6 +107,8 @@ namespace LibraryData.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CinemaId");
+
                     b.HasIndex("RoomId");
 
                     b.ToTable("Movies");
@@ -118,6 +119,8 @@ namespace LibraryData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("CurrentCinemaId");
+
                     b.Property<int>("Seats");
 
                     b.Property<string>("Status")
@@ -125,6 +128,8 @@ namespace LibraryData.Migrations
                         .HasMaxLength(32);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CurrentCinemaId");
 
                     b.ToTable("Rooms");
                 });
@@ -139,12 +144,8 @@ namespace LibraryData.Migrations
             modelBuilder.Entity("LibraryData.Models.Client", b =>
                 {
                     b.HasOne("LibraryData.Models.Cinema", "Cinema")
-                        .WithMany("Client")
+                        .WithMany("Clients")
                         .HasForeignKey("CinemaId");
-
-                    b.HasOne("LibraryData.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId");
 
                     b.HasOne("LibraryData.Models.Room", "Room")
                         .WithMany()
@@ -153,9 +154,20 @@ namespace LibraryData.Migrations
 
             modelBuilder.Entity("LibraryData.Models.Movie", b =>
                 {
-                    b.HasOne("LibraryData.Models.Room")
+                    b.HasOne("LibraryData.Models.Cinema")
+                        .WithMany("Movies")
+                        .HasForeignKey("CinemaId");
+
+                    b.HasOne("LibraryData.Models.Room", "Room")
                         .WithMany("Movies")
                         .HasForeignKey("RoomId");
+                });
+
+            modelBuilder.Entity("LibraryData.Models.Room", b =>
+                {
+                    b.HasOne("LibraryData.Models.Cinema", "CurrentCinema")
+                        .WithMany()
+                        .HasForeignKey("CurrentCinemaId");
                 });
 #pragma warning restore 612, 618
         }

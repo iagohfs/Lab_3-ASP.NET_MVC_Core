@@ -12,10 +12,5 @@ namespace LibraryData.Models
 
         public DateTime BookingDate { get; set; }
 
-        public virtual IEnumerable<Movie> Movie { get; set; }
-        public virtual IEnumerable<Room> Room { get; set; }
-        public virtual IEnumerable<Cinema> Cinema { get; set; }
-        public virtual IEnumerable<Client> Client { get; set; }
-
     }
 }
